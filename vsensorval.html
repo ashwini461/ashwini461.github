@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script></head>
+<body>
+<div class="container"><p id="demo"></p></div>
+<script>
+/*$(document).ready(function(){
+loadData();
+});
+
+function loadData()
+{
+  var mintemp=25;
+  var maxtemp=60;
+  var temp=35;
+  var devid="d1";
+   $.ajax({
+      url:"sendData1.php",
+      type:"get",
+      data:{id:devid,
+            temperature:temp
+            },
+       success: function(data,status){
+         alert("record inserted");
+         },
+         error: function() {
+        alert('There was some error performing the AJAX call!');
+      }  
+      });
+
+  });
+}*/
+
+
+
+
+var locId='d1';
+var url="";
+//var url="tempserver.php?"+"id="+locId+"&temp="+temp;
+var temp;
+var mintemp=25;
+var maxtemp=40;
+ 
+   setInterval(loadDoc, 5000);  
+function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange=function() {
+    if (this.readyState == 4 && this.status == 200) {
+    document.getElementById("demo").innerHTML = this.responseText;
+    temp=Math.random()*(+maxtemp - +mintemp)+ +mintemp;
+   url="sendData1.php?"+"id="+locId+"&temperature="+temp;   
+    }
+
+ };
+      xhttp.open("GET", url, true);
+      xhttp.send();
+
+}
+</script>
+</body>
+</html>
